@@ -1,0 +1,48 @@
+database name is data_mining
+
+Tables:
+1) patient_info
+| temp             | float      | YES  |     | NULL    |       |
+| nausea           | tinyint(1) | YES  |     | NULL    |       |
+| lumbarPain       | tinyint(1) | YES  |     | NULL    |       |
+| urinePushing     | tinyint(1) | YES  |     | NULL    |       |
+| micturitionPains | tinyint(1) | YES  |     | NULL    |       |
+| urethraBurning   | tinyint(1) | YES  |     | NULL    |       |
+| inflammationOfUB | tinyint(1) | YES  |     | NULL    |       |
+| nephritis        | tinyint(1) | YES  |     | NULL    |       |
+
+CREATE TABLE `patient_info` (
+  `temp` float DEFAULT NULL,
+  `nausea` tinyint(1) DEFAULT NULL,
+  `lumbarPain` tinyint(1) DEFAULT NULL,
+  `urinePushing` tinyint(1) DEFAULT NULL,
+  `micturitionPains` tinyint(1) DEFAULT NULL,
+  `urethraBurning` tinyint(1) DEFAULT NULL,
+  `inflammationOfUB` tinyint(1) DEFAULT NULL,
+  `nephritis` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+2)ifTable
+| id          | int(11)     | NO   | PRI | NULL    | auto_increment |
+| ifAttribute | varchar(40) | YES  |     | NULL    |                |
+| value       | varchar(10) | YES  |     | NULL    |                |
+
+CREATE TABLE `ifTable` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ifAttribute` varchar(40) DEFAULT NULL,
+  `value` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=latin1
+
+3)thenTable
+| id            | int(11)     | YES  | MUL | NULL    |       |
+| thenAttribute | varchar(40) | YES  |     | NULL    |       |
+| value         | varchar(10) | YES  |     | NULL    |       |
+
+CREATE TABLE `thenTable` (
+  `id` int(11) DEFAULT NULL,
+  `thenAttribute` varchar(40) DEFAULT NULL,
+  `value` varchar(10) DEFAULT NULL,
+  KEY `id` (`id`),
+  CONSTRAINT `thenTable_ibfk_1` FOREIGN KEY (`id`) REFERENCES `ifTable` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
